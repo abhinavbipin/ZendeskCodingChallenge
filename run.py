@@ -3,15 +3,15 @@ from Options import *
 import os
 
 #To start the ticket viewer, enter python3 run.py
-
+#url, user name, and password is stored in your home directory, in .bash_profile
 def main():
     
-    print('\nWelcome to Zendesk Ticket Viewer. You are viewing Abhinav Bipin\'s Tickets.\n')
-
     #setting up credentials to connect to API
-    url = 'https://zccabipin.zendesk.com/api/v2/tickets.json'
+    url = os.environ.get('url')
     user = os.environ.get('user')
     password = os.environ.get('password')
+
+    print('\nWelcome to Zendesk Ticket Viewer. You are viewing {}\'s Tickets.\n'.format(user))
 
     # tickets
     ticket_list = getTickets(url, user, password)
