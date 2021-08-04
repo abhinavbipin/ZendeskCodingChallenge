@@ -1,6 +1,6 @@
 # ZendeskCodingChallenge
 
-This project connects to the Zendesk API, make http requests to retrieve all the tickets, and displays them in a command line interface.
+This project connects to the Zendesk API, make http requests to retrieve all the tickets, and displays them in a command line interface. The credentials should be stored on your home directoy, within .bash_profile. 
 
 
 
