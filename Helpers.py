@@ -4,7 +4,11 @@ import requests
 #methods used by the viewers or by main
 
 # Displays the ticket of the page the user is currently on
-def display_tickets(page, ticket_list):
+def displayTickets(ticket_list, page):
+
+    while(type(page) != int or page < 0 or page > math.ceil((len(ticket_list)/25)-1)):
+        print('Please enter a valid page number')
+        page = input()
 
     #prints logistics of all tickets and page
     print('\nTotal tickets: {}  Tickets displayed: {}  Page: {}/{}\n'.format(len(ticket_list), min((len(ticket_list)- page *25 ), 25), page+1, math.ceil(len(ticket_list)/25)))

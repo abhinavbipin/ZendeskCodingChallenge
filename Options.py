@@ -5,12 +5,23 @@ from Helpers import *
 
 def pageViewer(ticket_list, page, choice):
     #will keep going until user quits
+    while(type(page) != int or page < 0 or page > math.ceil((len(ticket_list)/25)-1)):
+        print('Please enter a valid page number')
+        page = input()
+
     while (choice != 'Q'):
-        
+
         #shows options. options will be limits baseed on which page user is on (EG cant go back from first page)
-        if (math.ceil(len(ticket_list)/25) >page+1):print('Press F to go forward one page')
-        if (page > 0): print('Press B to go backward one page')
-        if (len(ticket_list)>25): print('Press C to choose a specific page to go to')
+        if (math.ceil(len(ticket_list)/25) >page+1):
+            print('Press F to go forward one page')
+
+        if (page > 0): 
+            print('Press B to go backward one page')
+
+        if (len(ticket_list)>25): 
+            print('Press C to choose a specific page to go to')
+
+
         print('Press S to view a single ticket')
         print('Press Q to quit')
 
@@ -21,13 +32,13 @@ def pageViewer(ticket_list, page, choice):
             #if they choose forward and its a valid option, display tickets of next page
             if (len(ticket_list)>25 and math.ceil(len(ticket_list)/25) >page+1):
                 page+=1
-                display_tickets(page, ticket_list)
+                displayTickets(ticket_list, page)
 
         elif(choice == 'B'):
             #if they choose backward and its a valid option, display tickets of previous page
             if (page > 0):
                 page -=1
-                display_tickets(page, ticket_list)
+                displayTickets(ticket_list, page)
 
 
         elif(choice == 'C'):
@@ -43,10 +54,10 @@ def pageViewer(ticket_list, page, choice):
             
             #show that page
             page = num - 1
-            display_tickets(page, ticket_list)
+            displayTickets(ticket_list, page)
 
         #or if they wanna see a single ticket, new set up
-        elif(choice == 'S'): singleTicket(ticket_list, page)
+        elif(choice == 'S'): choice = singleTicket(ticket_list, page)
 
 #Displays more information about a single ticket
 def singleTicket(ticket_list, page):
@@ -74,9 +85,13 @@ def singleTicket(ticket_list, page):
 
     # wait for user to go back
     choice = ''
-    while (choice != 'B'):
+    while (choice != 'B' and choice != 'Q'):
         print('Press B to go back to view the whole page of tickets')
+        print('Press Q to quit')
         choice = str(input()).capitalize()
 
-    #display ticket of the page we were on before setting up options again
-    display_tickets(page, ticket_list)
+    if choice == 'B':
+        #display ticket of the page we were on before setting up options again
+        displayTickets(ticket_list, page)
+        return 'B'
+    else: return 'Q'

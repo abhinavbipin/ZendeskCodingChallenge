@@ -18,7 +18,7 @@ def main():
 
     # page = 0 # Will keep of which page user is currently on, each page is 25 tickets max
     # choice = '' # will keep track of user's choice
-    display_tickets(ticket_list, 0) # show first 25 tickets
+    displayTickets(ticket_list, 0) # show first 25 tickets
     pageViewer(ticket_list, 0, '') # method that allows user to navigate, will not return until user quits
 
     print ('\nThanks for using Zendesk! Have a great day.\n') # end statement
